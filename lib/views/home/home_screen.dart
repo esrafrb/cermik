@@ -224,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: [
                           Text(
-                            "Eğil Belediyesi",
+                            "Çermik Belediyesi",
                             style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 9, fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 10),

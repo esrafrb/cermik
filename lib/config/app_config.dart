@@ -3,16 +3,16 @@ class AppConfig {
   
   // Canlı sunucu erişimi için
   static String get apiBaseUrl {
-    return 'https://cermik.rotarehber.com/laravel_api/public/api/v1/';
+    return 'https://rotarehber.com/laravel_api/public/api/v1/';
   }
 
   /// Web sitesi ana URL'si — Paylaş linkleri için kullan (API URL'si değil!)
-  static String get webBaseUrl => 'https://cermik.rotarehber.com';
+  static String get webBaseUrl => 'https://rotarehber.com';
 
   static String get baseUrl => webBaseUrl;
   
   static String get baseMediaUrl {
-    return 'https://cermik.rotarehber.com/';
+    return 'https://rotarehber.com/';
   }
 
 
