@@ -1,0 +1,53 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Tüm alt projeler (3rd party paketler dahil) için Kotlin ve JVM ayarları
+subprojects {
+    buildscript {
+        repositories {
+            google()
+            mavenCentral()
+        }
+        dependencies {
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
+        }
+    }
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileSdkVersion 35
+                if (namespace == null) {
+                    namespace = project.group ?: "com.rota.rehber.${project.name.replace("-", "_")}"
+                }
+                defaultConfig {
+                    targetSdkVersion 35
+                }
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
+                }
+            }
+        }
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            kotlinOptions {
+                jvmTarget = "17"
+            }
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

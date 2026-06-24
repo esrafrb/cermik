@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "24354283713",
+    "project_id": "yahyailesosyalgiris-84f11",
+    "storage_bucket": "yahyailesosyalgiris-84f11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24354283713:android:813139f0c39c191814f440",
+        "android_client_info": {
+          "package_name": "com.rotarehber.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4HnofoUcFiMCfiUzi4J32ngpdtOkqKAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

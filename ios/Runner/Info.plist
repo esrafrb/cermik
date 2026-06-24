@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Çermik Belediyesi</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>rotarehber_flutter</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+    
+    <!-- Konum İzinleri (Geolocator için zorunlu) -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Size en yakın mekanları ve olanakları listeleyebilmemiz için konum izninize ihtiyacımız var.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Arka plandayken bile konum bazlı bildirim alabilmeniz için gereklidir.</string>
+    
+    <!-- Kamera ve Galeri İzinleri (Çek Gönder / Profil Resmi için zorunlu) -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Çek-Gönder formuna fotoğraf yüklemek veya profil resminizi güncellemek için galeriye erişim izni gereklidir.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Çek-Gönder ile anlık fotoğraf çekmek veya profil kameranızı kullanabilmeniz için kamera izni gereklidir.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Kamera ile video çekimi yapılması durumunda mikrofon erişimi gereklidir.</string>
+
+	<!-- App Transport Security — Facebook WebView ve HTTP/HTTPS içeriğine izin ver -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
+
+	<!-- Facebook URL şemaları — FB uygulamasıyla link açabilmek ve canlı yayın için -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>facebook</string>
+		<string>fb</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>https</string>
+		<string>http</string>
+	</array>
+</dict>
+</plist>
