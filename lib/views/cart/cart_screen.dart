@@ -109,7 +109,7 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                  padding: EdgeInsets.fromLTRB(20, 16, 20, 20 + MediaQuery.of(context).padding.bottom),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1e293b),
                     borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
