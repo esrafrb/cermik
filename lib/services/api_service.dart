@@ -254,13 +254,15 @@ class ApiService {
   static Future<Map<String, dynamic>> updateFcmToken(String fcmToken) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final userId = prefs.getInt('userId');
-      if (userId == null) return {'status': 'error', 'message': 'Oturum yok'};
+      final userId = prefs.getInt('userId'); // null ise anonim kullanıcı
 
       final res = await http.post(
         Uri.parse('${AppConfig.webBaseUrl}/api/update_fcm.php'),
         headers: _getHeaders(),
-        body: jsonEncode({'fcm_token': fcmToken, 'user_id': userId}),
+        body: jsonEncode({
+          'fcm_token': fcmToken,
+          'user_id': userId ?? 0, // 0 = anonim (giriş yapmamış)
+        }),
       );
       if (res.statusCode == 200) {
         return json.decode(utf8.decode(res.bodyBytes));
