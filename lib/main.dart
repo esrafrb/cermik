@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:app_links/app_links.dart';
 import 'views/place/place_detail_screen.dart';
 import 'views/business/business_detail_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -46,7 +47,20 @@ Future<Uint8List?> _downloadImageBytes(String url) async {
 // Uygulama KAPALI iken gelen bildirimler için gerekli (top-level function)
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: 'AIzaSyBAqa--GNH_3QSXzgTncnTS1d-LcjwNWeU',
+        appId: '1:24354283713:ios:36de4bae5024f60014f440',
+        messagingSenderId: '24354283713',
+        projectId: 'yahyailesosyalgiris-84f11',
+        storageBucket: 'yahyailesosyalgiris-84f11.firebasestorage.app',
+        iosBundleId: 'com.rotarehber.app',
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   
   // Arka planda gelen bildirimleri zil ikonuna (Hive'a) kaydet
   try {
@@ -241,7 +255,20 @@ class _MyAppState extends State<MyApp> {
 
 Future<void> _initializeFirebaseAndNotifications() async {
   try {
-    await Firebase.initializeApp();
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      await Firebase.initializeApp(
+        options: const FirebaseOptions(
+          apiKey: 'AIzaSyBAqa--GNH_3QSXzgTncnTS1d-LcjwNWeU',
+          appId: '1:24354283713:ios:36de4bae5024f60014f440',
+          messagingSenderId: '24354283713',
+          projectId: 'yahyailesosyalgiris-84f11',
+          storageBucket: 'yahyailesosyalgiris-84f11.firebasestorage.app',
+          iosBundleId: 'com.rotarehber.app',
+        ),
+      );
+    } else {
+      await Firebase.initializeApp();
+    }
     final messaging = FirebaseMessaging.instance;
 
     // Flutter Local Notifications — Android & iOS başlatma
