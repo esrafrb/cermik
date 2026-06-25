@@ -49,4 +49,5 @@ flutter_launcher_icons:
   min_sdk_size: 21 # android min sdk
 
 flutter:
+  disable-swift-package-manager: true
   uses-material-design: true
