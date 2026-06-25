@@ -206,6 +206,27 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          child: SizedBox(
+            width: double.infinity,
+            height: 55,
+            child: ElevatedButton(
+              onPressed: (_addresses.isEmpty || _isLoading) ? null : _placeOrder,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyanAccent,
+                foregroundColor: Colors.black,
+                disabledBackgroundColor: Colors.white24,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+              child: _isLoading
+                  ? const CircularProgressIndicator(color: Colors.black)
+                  : Text(isEn ? "CONFIRM ORDER" : "SİPARİŞİ ONAYLA", style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15, letterSpacing: 1)),
+            ),
+          ),
+        ),
+      ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator(color: Colors.cyanAccent))
           : SingleChildScrollView(
@@ -327,20 +348,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: ElevatedButton(
-                      onPressed: _addresses.isEmpty ? null : _placeOrder,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.cyanAccent,
-                        foregroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      ),
-                      child: Text(isEn ? "CONFIRM ORDER" : "SİPARİŞİ ONAYLA", style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15, letterSpacing: 1)),
-                    ),
-                  )
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

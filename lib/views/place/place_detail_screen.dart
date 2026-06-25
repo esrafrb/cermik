@@ -130,7 +130,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
           ),
           flexibleSpace: FlexibleSpaceBar(
             title: Text(
-              (isEn ? (place.nameEn ?? place.name) : place.name).replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase(),
+              _toTurkishUpperCase(isEn ? (place.nameEn ?? place.name) : place.name),
               style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 1, shadows: [Shadow(color: Colors.black87, blurRadius: 10)]),
             ),
             background: Stack(
@@ -349,9 +349,21 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
     );
   }
 
+  String _toTurkishUpperCase(String text) {
+    return text
+        .replaceAll('i', 'İ')
+        .replaceAll('ı', 'I')
+        .replaceAll('ğ', 'Ğ')
+        .replaceAll('ü', 'Ü')
+        .replaceAll('ş', 'Ş')
+        .replaceAll('ö', 'Ö')
+        .replaceAll('ç', 'Ç')
+        .toUpperCase();
+  }
+
   Widget _buildSectionTitle(String title) {
     return Text(
-      title.replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase(),
+      _toTurkishUpperCase(title),
       style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w900, letterSpacing: 1.2),
     );
   }
@@ -457,23 +469,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
           ),
         ),
 
-        const SizedBox(height: 25),
-        Center(
-          child: Text(
-            isEn ? "VISIT STATISTICS" : "ZİYARET İSTATİSTİKLERİ",
-            style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1),
-          ),
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(child: _buildStatBox(place.checkinDay.toString(), isEn ? "DAILY" : "GÜNLÜK", const Color(0xFFf6ad55))),
-            const SizedBox(width: 10),
-            Expanded(child: _buildStatBox(place.checkinMonth.toString(), isEn ? "MONTHLY" : "AYLIK", const Color(0xFFa29bfe))),
-            const SizedBox(width: 10),
-            Expanded(child: _buildStatBox(place.checkinYear.toString(), isEn ? "YEARLY" : "YILLIK", const Color(0xFFfab1a0))),
-          ],
-        ),
       ],
     );
   }

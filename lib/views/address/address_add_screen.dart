@@ -14,7 +14,7 @@ class AddressAddScreen extends StatefulWidget {
 class _AddressAddScreenState extends State<AddressAddScreen> {
   final _titleCtrl = TextEditingController();
   final _addressCtrl = TextEditingController();
-  final _districtCtrl = TextEditingController(text: 'Eğil'); // Sabit İlçe
+  final _districtCtrl = TextEditingController(text: 'Çermik'); // Sabit İlçe
   final _cityCtrl = TextEditingController(text: 'Diyarbakır'); // Sabit il
   bool _isDefault = false;
   bool _isLoading = false;
@@ -112,7 +112,7 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
             const SizedBox(height: 15),
             Row(
               children: [
-                // İlçe sabit "Eğil" — düzenlenemez
+                // İlçe sabit "Çermik" — düzenlenemez
                 Expanded(
                   child: TextField(
                     controller: _districtCtrl,

@@ -31,8 +31,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.rotarehber.app"
-    compileSdk 35
-    ndkVersion "27.0.12077973"
+    compileSdk 36
+    ndkVersion "28.2.13676358"
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -50,12 +50,16 @@ android {
 
     defaultConfig {
         applicationId "com.rotarehber.app"
-        minSdkVersion 21
-        targetSdkVersion 35
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
         multiDexEnabled true
+
+        ndk {
+            debugSymbolLevel 'FULL'
+        }
     }
 
     signingConfigs {
@@ -75,7 +79,7 @@ android {
 
     packaging {
         jniLibs {
-            useLegacyPackaging = false  // Android 15+ için 16KB sayfa boyutu desteği
+            useLegacyPackaging = false  // 16KB hizalama + debug sembol uyumluluğu için
         }
         resources {
             pickFirsts.add("lib/arm64-v8a/libc++_shared.so")
