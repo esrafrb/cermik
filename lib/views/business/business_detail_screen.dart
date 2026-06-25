@@ -179,9 +179,10 @@ class _BusinessDetailScreenState extends State<BusinessDetailScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
+                        radius: 24,
                         backgroundColor: Colors.black45,
                         child: IconButton(
-                          icon: const Icon(Icons.shopping_basket_outlined, color: Colors.cyanAccent, size: 20),
+                          icon: const Icon(Icons.shopping_basket_outlined, color: Colors.cyanAccent, size: 28),
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen()));
                           },
@@ -190,14 +191,14 @@ class _BusinessDetailScreenState extends State<BusinessDetailScreen> {
                     ),
                     if (cart.items.isNotEmpty)
                       Positioned(
-                        right: 8,
-                        top: 8,
+                        right: 4,
+                        top: 4,
                         child: Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(6),
                           decoration: const BoxDecoration(color: Colors.redAccent, shape: BoxShape.circle),
                           child: Text(
                             cart.items.length.toString(),
-                            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                            style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
