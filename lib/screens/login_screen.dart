@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../services/auth_service.dart';
+import '../services/api_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'register_screen.dart';
 import 'forgot_password_screen.dart';
@@ -107,6 +109,11 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
       );
 
       if (res['status'] == 'success') {
+        // Giriş başarılı — FCM tokenı yeni userId ile güncelle
+        try {
+          final token = await FirebaseMessaging.instance.getToken();
+          if (token != null) await ApiService.updateFcmToken(token);
+        } catch (_) {}
         if (widget.isEmbedded) {
           if (widget.onLoginSuccess != null) widget.onLoginSuccess!();
         } else if (mounted) {
@@ -149,6 +156,11 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
       );
 
       if (res['status'] == 'success') {
+        // OTP doğrulama başarılı — FCM tokenı yeni userId ile güncelle
+        try {
+          final token = await FirebaseMessaging.instance.getToken();
+          if (token != null) await ApiService.updateFcmToken(token);
+        } catch (_) {}
         if (widget.isEmbedded) {
           if (widget.onLoginSuccess != null) widget.onLoginSuccess!();
         } else if (mounted) {
