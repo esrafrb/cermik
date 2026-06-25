@@ -76,6 +76,10 @@
 		<true/>
 	</dict>
 
+	<!-- Apple Export Compliance Şifreleme Sorusunu Atlamak İçin -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+
 	<!-- Facebook URL şemaları — FB uygulamasıyla link açabilmek ve canlı yayın için -->
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
