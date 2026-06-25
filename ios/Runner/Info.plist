@@ -56,6 +56,8 @@
 	<string>Size en yakın mekanları ve olanakları listeleyebilmemiz için konum izninize ihtiyacımız var.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Arka plandayken bile konum bazlı bildirim alabilmeniz için gereklidir.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Size en yakın mekanları ve olanakları listeleyebilmemiz için konum izninize ihtiyacımız var.</string>
     
     <!-- Kamera ve Galeri İzinleri (Çek Gönder / Profil Resmi için zorunlu) -->
 	<key>NSPhotoLibraryUsageDescription</key>
