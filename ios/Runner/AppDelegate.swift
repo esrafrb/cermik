@@ -2,6 +2,7 @@ import UIKit
 import Flutter
 import GoogleMaps
 import UserNotifications
+import FirebaseCore
 import FirebaseMessaging
 
 @UIApplicationMain
@@ -10,6 +11,11 @@ import FirebaseMessaging
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    // Firebase native init (Required for iOS push before Flutter starts)
+    if FirebaseApp.app() == nil {
+      FirebaseApp.configure()
+    }
+    
     GMSServices.provideAPIKey("AIzaSyBAqa--GNH_3QSXzgTncnTS1d-LcjwNWeU")
     
     // Natively request push notification permissions
