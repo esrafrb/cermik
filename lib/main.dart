@@ -300,6 +300,16 @@ Future<void> _initializeFirebaseAndNotifications() async {
 
     // FCM Token'ı al ve sunucuya gönder (Giriş yapılmışsa ApiService bunu otomatik profile bağlar)
     try {
+      if (Platform.isIOS) {
+        // iOS için APNs token'ın hazır olmasını bekle
+        String? apnsToken = await messaging.getAPNSToken();
+        if (apnsToken == null) {
+          await Future.delayed(const Duration(seconds: 3));
+          apnsToken = await messaging.getAPNSToken();
+        }
+        debugPrint('[FCM] APNs Token (iOS): $apnsToken');
+      }
+
       final token = await messaging.getToken();
       if (token != null) {
         debugPrint('[FCM] Token alındı ve sunucuya iletiliyor: $token');
@@ -317,7 +327,12 @@ Future<void> _initializeFirebaseAndNotifications() async {
     );
 
     // Tüm kullanıcıları 'all_users' topic'ine abone et
-    await messaging.subscribeToTopic('all_users');
+    try {
+      await messaging.subscribeToTopic('all_users');
+      debugPrint('[FCM] Başarıyla all_users topic abone olundu.');
+    } catch (e) {
+      debugPrint('[FCM] Topic aboneliği hatası: $e');
+    }
 
     // Uygulama KAPALI iken gelen bildirime tıklayınca açılış
     RemoteMessage? initialMessage = await messaging.getInitialMessage();
