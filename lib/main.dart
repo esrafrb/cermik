@@ -415,6 +415,8 @@ Future<void> _initializeFirebaseAndNotifications() async {
       }
     });
 
+      } catch (e) {
+        debugPrint("Background FCM setup error: $e");
       }
     });
 
