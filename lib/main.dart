@@ -269,9 +269,13 @@ Future<void> _initializeFirebaseAndNotifications() async {
     } else {
       await Firebase.initializeApp();
     }
-    final messaging = FirebaseMessaging.instance;
+    // Geri kalan API istekleri ve izin pencereleri runApp'i (UI çizimini) 
+    // engellemesin diye asenkron olarak arka planda çalıştırıyoruz.
+    Future.microtask(() async {
+      try {
+        final messaging = FirebaseMessaging.instance;
 
-    // Flutter Local Notifications — Android & iOS başlatma
+        // Flutter Local Notifications — Android & iOS başlatma
     await _localNotif
         .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(_androidChannel);
@@ -408,6 +412,9 @@ Future<void> _initializeFirebaseAndNotifications() async {
           notif.body,
           NotificationDetails(android: androidDetails),
         );
+      }
+    });
+
       }
     });
 
