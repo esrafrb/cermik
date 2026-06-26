@@ -876,7 +876,9 @@ class _BusinessDetailScreenState extends State<BusinessDetailScreen> {
                 ...p.variants.map((v) {
                   return ListTile(
                     title: Text(v.name, style: const TextStyle(color: Colors.white)),
-                    trailing: Text("+${v.priceDiff} ₺", style: const TextStyle(color: Colors.cyanAccent, fontWeight: FontWeight.bold)),
+                    trailing: (v.priceDiff > 0) 
+                        ? Text("+${v.priceDiff} ₺", style: const TextStyle(color: Colors.cyanAccent, fontWeight: FontWeight.bold))
+                        : null,
                     onTap: () {
                       Navigator.pop(context);
                       _processAddToCart(p, v, biz, isEn);
