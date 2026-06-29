@@ -162,7 +162,7 @@ class _MuhtarliklarScreenState extends State<MuhtarliklarScreen> {
             const SizedBox(height: 24),
           ],
           if (hasKoy) ...[
-            _buildSectionHeader('Köy Mahalle Muhtarları', Icons.nature_outlined),
+            _buildSectionHeader('Kırsal Mahalle Muhtarları', Icons.nature_outlined),
             const SizedBox(height: 12),
             ..._koyList.map((m) => _buildMuhtarCard(m)),
           ],
