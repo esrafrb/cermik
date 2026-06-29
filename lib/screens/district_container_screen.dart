@@ -5,10 +5,10 @@ import '../widgets/sidebar_menu.dart';
 import '../config/app_config.dart';
 import '../services/lang_service.dart';
 import 'tabs/discover_tab.dart';
-import 'tabs/events_tab.dart';
 import 'tabs/announcements_tab.dart';
 import 'tabs/services_tab.dart';
 import 'tabs/profile_tab.dart';
+import 'muhtarliklar/muhtarliklar_screen.dart';
 
 class DistrictContainerScreen extends StatefulWidget {
   final Map<String, dynamic> district;
@@ -92,7 +92,12 @@ class _DistrictContainerScreenState extends State<DistrictContainerScreen> {
             index: _currentIndex,
             children: [
               DiscoverTab(district: widget.district, details: _details),
-              EventsTab(districtId: widget.district['id']),
+              MuhtarliklarScreen(
+                districtId: widget.district['id'] is int
+                    ? widget.district['id']
+                    : int.tryParse(widget.district['id'].toString()) ?? 0,
+                districtName: widget.district['name']?.toString() ?? '',
+              ),
               AnnouncementsTab(districtId: widget.district['id']),
               ServicesTab(districtId: widget.district['id'], districtName: widget.district['name']),
               const ProfileTab(),

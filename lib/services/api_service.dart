@@ -128,6 +128,20 @@ class ApiService {
     return [];
   }
 
+  static Future<Map<String, dynamic>> getMuhtarlar({required int districtId}) async {
+    try {
+      final uri = Uri.parse('${AppConfig.webBaseUrl}/api/muhtarlar.php')
+          .replace(queryParameters: {'district_id': districtId.toString()});
+      final res = await http.get(uri).timeout(const Duration(seconds: 15));
+      if (res.statusCode == 200) {
+        return json.decode(utf8.decode(res.bodyBytes));
+      }
+      return {'status': 'error', 'data': {'merkez': [], 'koy': []}};
+    } catch (e) {
+      return {'status': 'error', 'data': {'merkez': [], 'koy': []}};
+    }
+  }
+
   static Future<Map<String, dynamic>?> getWeather({double? lat, double? lng}) async {
     String url = '${baseUrl}weather?lang=$_lang';
     if (lat != null && lng != null) {

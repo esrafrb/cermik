@@ -44,7 +44,7 @@ class FloatingBottomNavBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _navItem(Icons.explore_outlined, 'Keşfet', 0),
-                _navItem(Icons.event_available_outlined, 'Etkinlik', 1),
+                _navItem(Icons.home_work_outlined, 'Muhtarlıklar', 1),
                 _navItem(Icons.home_outlined, '', 2), // Home
                 _navItem(Icons.volunteer_activism_outlined, 'Hizmetler', 3),
                 _navItem(Icons.person_outline, 'Profil', 4),
