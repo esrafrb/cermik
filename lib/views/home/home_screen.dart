@@ -227,17 +227,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Çermik Belediyesi",
                             style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 9, fontWeight: FontWeight.w500),
                           ),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildFooterLink(isEn ? "Privacy Policy" : "Gizlilik Politikası", "privacy.php"),
-                              _buildFooterDot(),
-                              _buildFooterLink(isEn ? "Admin Login" : "Yönetim Girişi", "admin/"),
-                              _buildFooterDot(),
-                              _buildFooterLink(isEn ? "Business Login" : "İşletme Girişi", "business/"),
-                            ],
-                          ),
                         ],
                       ),
                     ),
