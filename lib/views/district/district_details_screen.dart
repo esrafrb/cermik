@@ -23,6 +23,7 @@ import '../../services/auth_service.dart';
 import '../../services/api_service.dart';
 import '../../providers/cart_provider.dart';
 import '../cart/cart_screen.dart';
+import '../../screens/muhtarliklar/muhtarliklar_screen.dart';
 
 class DistrictDetailsScreen extends StatefulWidget {
   final String districtId;
@@ -101,7 +102,10 @@ class _DistrictDetailsScreenState extends State<DistrictDetailsScreen> {
             index: _currentIndex,
             children: [
               _buildExploreTab(isEn, provider, details),
-              const SizedBox.shrink(), // Index 1 is Cart (handled via push)
+              MuhtarliklarScreen(
+                districtId: int.tryParse(widget.districtId) ?? 0,
+                districtName: widget.districtName,
+              ),
               const SizedBox.shrink(),
               ServiceListScreen(
                 districtId: widget.districtId, 
@@ -561,14 +565,7 @@ class _DistrictDetailsScreenState extends State<DistrictDetailsScreen> {
       child: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          if (index == 1) {
-            if (cart.isEmpty) {
-              Navigator.push(context, CupertinoPageRoute(builder: (context) => BusinessListScreen(districtId: widget.districtId, categoryId: 'restaurant', categoryName: isEn ? 'Restaurants' : 'Restoranlar')));
-            } else {
-              Navigator.push(context, CupertinoPageRoute(builder: (context) => const CartScreen()));
-            }
-          }
-          else if (index == 2) Navigator.of(context).popUntil((route) => route.isFirst);
+          if (index == 2) Navigator.of(context).popUntil((route) => route.isFirst);
           else setState(() => _currentIndex = index);
         },
         type: BottomNavigationBarType.fixed,
@@ -581,29 +578,8 @@ class _DistrictDetailsScreenState extends State<DistrictDetailsScreen> {
         items: [
           BottomNavigationBarItem(icon: const Icon(Icons.explore_outlined, size: 20), label: isEn ? "Discover" : "Keşfet"),
           BottomNavigationBarItem(
-            icon: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                const Icon(Icons.shopping_cart_outlined, size: 20),
-                if (cart.totalItems > 0)
-                  Positioned(
-                    top: -5,
-                    right: -8,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
-                        color: Colors.redAccent,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        '${cart.totalItems}',
-                        style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            label: isEn ? "Cart" : "Sepet",
+            icon: const Icon(Icons.home_work_outlined, size: 20),
+            label: isEn ? "Muhtarlıklar" : "Muhtarlıklar",
           ),
           BottomNavigationBarItem(icon: Container(padding: const EdgeInsets.all(8), decoration: const BoxDecoration(color: Colors.cyan, shape: BoxShape.circle), child: const Icon(Icons.home_outlined, color: Colors.black, size: 24)), label: ""),
           BottomNavigationBarItem(icon: const FaIcon(FontAwesomeIcons.handHoldingHeart), label: isEn ? "Services" : "Hizmetler"),
