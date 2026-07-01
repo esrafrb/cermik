@@ -20,6 +20,9 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
   bool _isLoading = false;
 
   Future<void> _save() async {
+    // iOS'ta klavyeyi kapat
+    FocusScope.of(context).unfocus();
+
     final title = _titleCtrl.text.trim();
     final address = _addressCtrl.text.trim();
 
@@ -93,7 +96,9 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: SingleChildScrollView(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
@@ -198,6 +203,7 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
             ),
           ],
         ),
+        ),
       ),
     );
   }
@@ -207,6 +213,8 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
       controller: controller,
       maxLines: maxLines,
       style: const TextStyle(color: Colors.white),
+      textInputAction: maxLines > 1 ? TextInputAction.newline : TextInputAction.next,
+      onSubmitted: (_) => FocusScope.of(context).nextFocus(),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
