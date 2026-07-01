@@ -80,6 +80,22 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 
+	<!-- Custom URL Şeması: Sadece Çermik uygulamasını hedeflemek için -->
+	<!-- Web sayfası rotarehber-cermik:// şemasıyla doğrudan bu uygulamayı açar -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.rotarehber.app.cermik</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>rotarehber-cermik</string>
+			</array>
+		</dict>
+	</array>
+
 	<!-- Facebook URL şemaları — FB uygulamasıyla link açabilmek ve canlı yayın için -->
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -89,6 +105,7 @@
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>rotarehber-cermik</string>
 		<string>https</string>
 		<string>http</string>
 	</array>

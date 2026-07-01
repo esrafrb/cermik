@@ -27,17 +27,25 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             
-            <!-- Deep Linking (App Links) Yapılandırması -->
+            <!-- Deep Linking (App Links) — Sadece /qr.php yolunu yakala -->
+            <!-- place_detail.php gibi diğer sayfalar tarayıcıda açılır, karışıklık olmaz -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                
-                <!-- Sitenizin uzantısı -->
-                <data android:scheme="https" android:host="rotarehber.com" />
-                <data android:scheme="http" android:host="rotarehber.com" />
-                <data android:scheme="https" android:host="www.rotarehber.com" />
-                <data android:scheme="http" android:host="www.rotarehber.com" />
+                <data android:scheme="https" android:host="rotarehber.com" android:pathPrefix="/qr.php" />
+                <data android:scheme="http" android:host="rotarehber.com" android:pathPrefix="/qr.php" />
+                <data android:scheme="https" android:host="www.rotarehber.com" android:pathPrefix="/qr.php" />
+                <data android:scheme="http" android:host="www.rotarehber.com" android:pathPrefix="/qr.php" />
+            </intent-filter>
+
+            <!-- Custom Scheme: Sadece Çermik uygulamasını açmak için -->
+            <!-- Web sayfası rotarehber-cermik:// şemasıyla doğrudan bu uygulamayı hedefler -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="rotarehber-cermik" android:host="app" />
             </intent-filter>
         </activity>
         <meta-data

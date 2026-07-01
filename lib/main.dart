@@ -191,7 +191,8 @@ class _MyAppState extends State<MyApp> {
   void _handleDeepLink(Uri uri) {
     debugPrint("🔗 Gelen Deep Link Yakalandı: $uri");
     
-    // Yönlendirme senaryoları (Örn: /qr.php?target=place&id=15 veya /qr.php?target=web&url=cermik/kaplica.php)
+    // Custom scheme (rotarehber-cermik://qr?target=place&id=15) veya
+    // HTTPS (https://rotarehber.com/qr.php?target=place&id=15) desteklenir
     final target = uri.queryParameters['target'];
     final idStr = uri.queryParameters['id'];
     final urlPath = uri.queryParameters['url'];
@@ -232,6 +233,7 @@ class _MyAppState extends State<MyApp> {
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
