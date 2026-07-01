@@ -97,9 +97,11 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             _buildTextField(
