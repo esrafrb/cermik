@@ -21,7 +21,7 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
 
   Future<void> _save() async {
     // iOS'ta klavyeyi kapat
-    FocusScope.of(context).unfocus();
+    FocusManager.instance.primaryFocus?.unfocus();
 
     final title = _titleCtrl.text.trim();
     final address = _addressCtrl.text.trim();
@@ -61,7 +61,8 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
     if (mounted) setState(() => _isLoading = false);
 
     if (res['status'] == 'success') {
-      Navigator.pop(context);
+      FocusManager.instance.primaryFocus?.unfocus();
+      if (mounted) Navigator.pop(context);
     } else {
       final msg = res['message'] ?? 'Hata oluştu';
       if (mounted) {
@@ -98,7 +99,7 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
       ),
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: const EdgeInsets.all(20),
@@ -216,7 +217,13 @@ class _AddressAddScreenState extends State<AddressAddScreen> {
       maxLines: maxLines,
       style: const TextStyle(color: Colors.white),
       textInputAction: maxLines > 1 ? TextInputAction.newline : TextInputAction.next,
-      onSubmitted: (_) => FocusScope.of(context).nextFocus(),
+      onSubmitted: (_) {
+        if (maxLines > 1) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        } else {
+          FocusScope.of(context).nextFocus();
+        }
+      },
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: Colors.white.withOpacity(0.5)),

@@ -48,6 +48,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   Future<void> _placeOrder() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_selectedAddressId == null) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Lütfen bir adres seçin veya ekleyin.')));
       return;
@@ -128,6 +129,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         final code = otpController.text.trim();
                         if (code.length != 6) return;
 
+                        FocusManager.instance.primaryFocus?.unfocus();
                         setModalState(() => isVerifying = true);
                         final res = await OrderService.verifyOrder(orderId, code);
                         setModalState(() => isVerifying = false);
@@ -229,9 +231,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator(color: Colors.cyanAccent))
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
+          : GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: SingleChildScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.all(20),
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(isEn ? "DELIVERY ADDRESS" : "TESLİMAT ADRESİ", style: const TextStyle(color: Colors.white54, fontWeight: FontWeight.bold, letterSpacing: 1)),
